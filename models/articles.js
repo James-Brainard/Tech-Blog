@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Articles extends Model {}
+class Articles extends Model { }
 
 Articles.init(
   {
@@ -12,7 +12,7 @@ Articles.init(
       autoIncrement: true,
     },
     blog_title: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     blog_contents: {
@@ -35,7 +35,14 @@ Articles.init(
       allowNull: false,
       validate: {
         notNull: true
-      }
-    }
+      },
+    },
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'articles'
   }
-)
+);
+
+module.exports = { Articles };

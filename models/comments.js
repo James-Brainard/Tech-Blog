@@ -42,7 +42,7 @@ Comments.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user'
+    modelName: 'comments'
   }
 );
-module.exports = Comments;
+module.exports = { Comments };
