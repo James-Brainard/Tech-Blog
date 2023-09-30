@@ -2,22 +2,34 @@ const { Articles } = require('./articles');
 const { Comments } = require('./comments');
 const { User } = require('./users');
 
-Articles.hasMany(Comments, {
-  foreignKey: 'articles_id',
+User.hasMany(Articles, {
+  foreignKey: 'created_by_user_id',
+  onDelete: 'CASCADE'
 });
 
-Comments.belongsTo(Articles, {
-  foreignKey: 'articles_id',
+Articles.belongsTo(User, {
+  foreignKey: 'created_by_user_id',
+  onDelete: 'CASCADE'
+});
+
+Articles.hasMany(Comments, {
+  foreignKey: 'article_id',
+  onDelete: 'CASCADE'
 });
 
 // user has many comments
 User.hasMany(Comments, {
-  foreignKey: 'user_id',
+  foreignKey: 'comment_user_id',
+});
+
+Comments.belongsTo(Articles, {
+  foreignKey: 'article_id',
 });
 
 // comments belong to users
 Comments.belongsTo(User, {
-  foreignKey: 'user_id',
-})
+  foreignKey: 'comment_user_id',
+});
+
 
 module.exports = { Articles, Comments, User };

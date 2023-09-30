@@ -22,8 +22,8 @@ Articles.init(
         notNull: true
       },
     },
-    blog_creator: {
-      type: DataTypes.TEXT,
+    created_by_user_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'user',
@@ -37,6 +37,8 @@ Articles.init(
         notNull: true
       },
     },
+  },
+  {
     sequelize,
     timestamps: false,
     freezeTableName: true,
