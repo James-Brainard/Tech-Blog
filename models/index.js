@@ -31,5 +31,20 @@ Comments.belongsTo(User, {
   foreignKey: 'comment_user_id',
 });
 
+// -------------------------------
+
+// Articles.belongsTo(User, {
+//   foreignKey: "created_by_user_id",
+//   onDelete: "CASCADE",
+// });
+// Articles.hasMany(Comments, {
+//   foreignKey: "article_id",
+//   onDelete: "CASCADE",
+// });
+// // comments belong to users
+// Comments.belongsTo(User, {
+//   foreignKey: "comment_user_id",
+// });
+
 
 module.exports = { Articles, Comments, User };

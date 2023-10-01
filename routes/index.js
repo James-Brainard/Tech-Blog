@@ -5,7 +5,7 @@ const router = require('express').Router();
 
 
 // Your dashboard after clicking dashboard
-const dashboardRoutes = require('./dashboard-routes');
+const apiRoutes = require('./api');
 // homeroutes will redirect user after signing In or signing up to the home route.
 // Gets everything - log in/sign up 
 // homepage / article / param:id
@@ -19,9 +19,10 @@ const dashboardRoutes = require('./dashboard-routes');
 
 // Blog routes? - creation / deletion
 
-// 
 
-const homeRoutes = require('./home-routes'); 
+const homeRoutes = require('./homeRoutes'); 
+const dashboardRoutes = require('./dashboardRoutes');
 
 router.use('/', homeRoutes);
-router.use('/', dashboardRoutes);
+router.use('/dashboard', dashboardRoutes)
+router.use('/api', apiRoutes);
