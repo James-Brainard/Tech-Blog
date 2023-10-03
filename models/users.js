@@ -19,6 +19,9 @@ User.init(
     user_name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notNull: true,
+      }
     },
     email: {
       type: DataTypes.STRING,
@@ -42,7 +45,13 @@ User.init(
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-    },
+      beforeBulkCreate: async (bulkUserData) => {
+        for (const user of bulkUserData) {
+          user.password = await bcrypt.hash(user.password, 10);
+        }
+        return bulkUserData;
+    }
+  },
     sequelize,
     timestamps: false,
     freezeTableName: true,

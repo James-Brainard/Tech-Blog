@@ -44,13 +44,20 @@ router.get('/articles/:id', withAuth, async (req, res) => {
   }
 })
 
+// router.get('/login', (req, res) => {
+//     if (req.session.logged_in) {
+//       res.redirect('/');
+//       return;
+//     }
+//     res.render('logins');
+//   } 
+// );
+
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/');
-    return;
+    return res.redirect('/');
   }
-
-  res.render('login');
-});
+  res.render('logins')
+})
 
 module.exports = router;

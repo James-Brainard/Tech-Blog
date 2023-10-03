@@ -28,18 +28,31 @@ router.put('/:id', withAuth, async (req, res) => {
         }
       ]
     });
-    // Need to get articles but not sure if above is correct
+    // Need to finish update articles above but not sure if above is correct
+    // NEED to UPDATE Articles COMMENTS MAYBE HERE OR ANOTHER ROUTER
   } catch(err) {
     res.status(400).json(err);
   }
 });
 
 
-// Delete previous articles
+// Delete selected article
 router.delete('/articles:id', withAuth, async (req, res) => {
   try{
+    const articleDelete = await Articles.destroy({
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id
+      },
+    });
 
+    if (!articleDelete) {
+      res.status(400).json({ message: 'No blog found with this id.'});
+      return;
+    }
   } catch(err) {
     res.status(500).json(err);
   }
 });
+
+module.exports = router;

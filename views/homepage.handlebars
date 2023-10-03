@@ -1,1 +1,16 @@
 <!-- Display each Article which includes comments and users -->
+{{#each article as |articles| }}
+<div class="articles">
+  <div class="col-md-5">
+    <h2>
+      <a href="/articles/{{articles.id}}">{{articles.blog_title}}</a>
+    </h2>
+    <aside>
+      Posted by: {{articles.created_by_user_id}} on{{format_date articles.date_created}}
+    </aside>
+  </div>
+  <p>
+    {{articles.blog_contents}}
+  </p>
+</div>
+{{/each}}

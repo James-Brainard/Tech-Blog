@@ -24,12 +24,14 @@ router.get('./dashboard', withAuth, async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-    const user = findUserArticles.get({ plain: true });
-    res.render('dashboard', {
-      user,
+    const userArticles = findUserArticles.get({ plain: true });
+    res.render('dashboard-page', {
+      userArticles,
       logged_in: true
     });
   } catch(err) {
     res.status(400).json(err);
   }
 });
+
+module.exports = router;
