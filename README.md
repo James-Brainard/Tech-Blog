@@ -56,3 +56,6 @@
   Please refer to my github for other awesome projects! https://github.com/james-brainard
 
   If you have any questions regarding this application or any others. You can reach me at: james.brainard2@aol.com
+
+  ## Screenshot of Application
+  ![Application Screenshot](tech-blog-screenshot.JPG)
