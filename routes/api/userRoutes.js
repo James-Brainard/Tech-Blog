@@ -11,8 +11,6 @@ router.post('/', async (req, res) => {
       email: req.body.email,
       password: req.body.password
     });
-
-
     req.session.save(() => {
       req.session.user_id = userInfo.id;
       req.session.user_name = userInfo.user_name;

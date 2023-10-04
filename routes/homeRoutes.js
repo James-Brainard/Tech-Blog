@@ -9,8 +9,10 @@ router.get('/', async (req, res) => {
     const getArticles = await Articles.findAll()
       const articlesList = getArticles.map((articles) => articles.get({ plain: true })
       );
-      res.render('homepage', {
-        articlesList
+      console.log(articlesList);
+      return res.render('home-page', {
+        articlesList,
+        logged_in: req.session.logged_in,
       })
   } catch (err) {
     res.status(500).json(err);

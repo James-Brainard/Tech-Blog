@@ -1,1 +1,13 @@
-<!-- Create Section for the blog/article details to show --> 
+<div class="articles">
+    <div class="col-md-5">
+      <h2>
+        <a href="/articles/{{this.id}}">{{this.blog_title}}</a>
+      </h2>
+      <aside>
+        Posted by: {{this.created_by_user_id}} on{{format_date this.date_created}}
+      </aside>
+    </div>
+    <p>
+      {{this.blog_contents}}
+    </p>
+  </div>

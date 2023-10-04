@@ -2,21 +2,11 @@ const router = require('express').Router();
 const { Articles } = require('../models');
 const withAuth = require('../utils/auth');
 
-// router.post('/dashboard', withAuth, async (req, res) => {
-//   try {
-//     const createArticle = await Articles.create({
-//       ...req.body,
-//       user_id: req.session.user_id,
-//     });
-//     res.status(200).json(createArticle);
-//   } catch(err) {
-//     res.status(400).json(err);
-//   }
-// });
+
 
 // where   req.session.user_id
 // Dashboard find User articles (if ANY)
-router.get('./dashboard', withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const findUserArticles = await Articles.findAll({
       where: {
@@ -25,7 +15,7 @@ router.get('./dashboard', withAuth, async (req, res) => {
       },
     });
     const userArticles = findUserArticles.get({ plain: true });
-    res.render('dashboard-page', {
+    return res.render('dashboard-page', {
       userArticles,
       logged_in: true
     });
@@ -33,5 +23,18 @@ router.get('./dashboard', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// edit article
+router.get('/:id', withAuth, async (req, res) => {
+  try {
+    const editArticle = Articles.update();
+    const editBlog = editArticle.get({ plain: true });
+    
+  } catch(err) {
+    res.status(400).json(err);
+  }
+})
+
+// add comment
 
 module.exports = router;

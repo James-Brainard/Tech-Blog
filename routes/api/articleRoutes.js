@@ -13,7 +13,7 @@ router.post('/', withAuth, async (req, res) => {
   } catch(err) {
     res.status(400).json(err);
   }
-})
+});
 
 // Update previous articles
 router.put('/:id', withAuth, async (req, res) => {
@@ -34,6 +34,11 @@ router.put('/:id', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// Post comment
+
+
+// Delete comment
 
 
 // Delete selected article
