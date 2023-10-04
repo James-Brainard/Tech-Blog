@@ -1,4 +1,4 @@
-<!-- This will display the main page for the sign in / sign up remember to link script at the bottom  -->
+<!-- This will display the main page with current body object  -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,25 +6,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Gaming Tech Blog!</title>
-  {{!-- <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css"> --}}
+  <link rel="stylesheet" href="/css/jass.css">
+  {{!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
-        <a href="/">The Gaming Tech Blog</a>
+        <a id="site-title" href="/">The Gaming Tech Blog</a>
       </h1>
       <nav>
         <!-- Conditionally render login or logout links -->
+        <a id="home-btn" href="/">Home</a> 
+        <a id="dashboard-btn" href="/dashboard">Dashboard</a>
         {{#if logged_in}}
-        <a href="/">Home</a> 
-        <a href="/dashboard">Dashboard</a>
         <button class="no-button" id="logout">logout</button>
         {{else}}
-        {{!-- <a href="/login">login</a> --}}
-        <a href="/login">Login</a>
+        <a id="login-btn" href="/login">Login</a>
         {{/if}}
       </nav>
     </header>

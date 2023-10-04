@@ -15,14 +15,14 @@ router.post('/', async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = userInfo.id;
-      req.session.username = userInfo.user_name;
+      req.session.user_name = userInfo.user_name;
       req.session.logged_in = true;
-
+      console.log(req.session);
       res.status(200).json(userInfo);
     })
   } catch (err) {
     console.error(err);
-    res.status(400).json(err);
+    res.status(404).json(err);
   }
 });
 
@@ -30,10 +30,9 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const userInfo = await User.findOne({ where: { email: req.body.email} });
-    console.log(User.req.body);
-
+    
     if (!userInfo) {
-      res.status(400).json({ message: 'Incorrect email or password, please try again!'});
+      res.status(404).json({ message: 'Incorrect email or password, please try again!'});
       return;
     }
     const validatePw = await userInfo.checkPassword(req.body.password);
@@ -44,6 +43,7 @@ router.post('/login', async (req, res) => {
     }
     req.session.save(() => {
       req.session.user_id = userInfo.id;
+      req.session.user_name = userInfo.user_name;
       req.session.logged_in = true;
 
       res.status(200).json(userInfo);
@@ -57,10 +57,10 @@ router.post('/login', async (req, res) => {
 router.delete('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      res.status(404).end();
+      res.status(204).end();
     });
   } else {
-    res.status(400).end();
+    res.status(200).end();
   }
 });
 
