@@ -39,7 +39,7 @@ router.get('/articles/:id', withAuth, async (req, res) => {
     });
     const grabArticles = getArticles.get({ plain: true });
     res.render('articles-page', {
-      grabArticles, loggedIn: true
+      ...grabArticles, loggedIn: true
     })
   } catch (err) {
     res.status(500).json(err);
